@@ -70,6 +70,17 @@ class PerpusController extends Controller
         return view('dashboard.dashboard');
     }
 
+    public function book(){
+        return view('dashboard.book');
+    }
+    
+    
+    public function user(){
+        $user = User::all();
+        return view('dashboard.user', compact('user'));  
+
+    }
+
     public function auth(Request $request)
     {
         $request->validate([
@@ -87,11 +98,7 @@ class PerpusController extends Controller
         }
     }
 
-    public function user()
-    {
-        $user = User::all();
-        return view('user', compact('user'));     
-    }
+
 
     public function create()
     {

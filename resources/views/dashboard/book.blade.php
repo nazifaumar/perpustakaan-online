@@ -21,7 +21,7 @@
 			<span class="text">AdminHub</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="/dash">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
@@ -33,7 +33,7 @@
 					<span class="text">Users</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/book">
 					<i class='bx bxs-book-alt' ></i>
 					<span class="text">Book</span>
@@ -76,7 +76,7 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="/dash">Dashboard</a>
+							<a class="active" href="/dash">Book</a>
 						</li>
 					</ul>
 				</div>
