@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Data;
 use App\Models\Perpus;
 use App\Models\User;
@@ -15,10 +16,6 @@ class PerpusController extends Controller
     public function index()
     {
         return view('index');
-    }
-
-    public function books(){
-        return view('books');
     }
     
     public function register(){
@@ -43,28 +40,17 @@ class PerpusController extends Controller
             'password' => Hash::make($request->password),
         ]);
         return redirect('/')->with('success', 'berhasil membuat akun!');
-
-        // $perpus = new User();
-        // $perpus->name = $request->name;
-        // $perpus->email = $request->email;
-        // $perpus->tlp = $request->tlp;
-        // $perpus->adress = $request->address;
-        // $perpus->password = $request->password;
-        // $perpus->save();
-
-        // $user = new User();
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
-        // // $user->password = Hash::make($request->nisn);
-        // // $user->role = 'user';
-        // $user->save();
-        // dd($request->all()); 
-
     }
 
     public function login(){
         return view('login');
+    }
+
+    public function logout(){
+        auth()->logout();
+        Session()->flush();
+
+        return redirect('/');
     }
 
     public function dashboard(){
@@ -80,13 +66,6 @@ class PerpusController extends Controller
 
     public function auth(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|exists:users,name',
-        //     'password' => 'required',
-        // ],[
-        //     'name.exists' => "This name doesn't exists"
-        // ]);
-
         $request->validate([
             'email' => 'required|exists:users,email',
             'password' => "required",
@@ -96,21 +75,15 @@ class PerpusController extends Controller
 
         $user = $request->only('email', 'password');
         if (Auth::attempt($user)) {
-            return redirect('/create');
+            return redirect('/dashboard');
         } else {
             return redirect('/log')->with('fail', "Gagal login, periksa dan coba lagi!");
         }
     }
 
-
-
-    public function create()
-    {
-            return view('create');
-    }
-
     public function book(){
-        return view('dashboard.book');
+        $data = Data::all();
+        return view('dashboard.book.index', compact('data'));
     }
     
 
@@ -123,14 +96,13 @@ class PerpusController extends Controller
             'isbn' => 'required',
             'sinopsis' => 'required',
             'kategori' => 'required',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'image' => 'required|image|mimes:png,jpg,jpeg,|max:2048',
         ]);
 
         $image = time().'.'.$request->image->extension();
         $request->image->move(public_path('images'), $image);
 
         Data::create([
-            // 'book_id'=> $ambil,
             'judul'=> $request->judul,
             'penulis'=> $request->penulis,
             'penerbit'=> $request->penerbit,
@@ -139,8 +111,34 @@ class PerpusController extends Controller
             'kategori'=> $request->kategori,
             'image'=> $image,
         ]);
+        return redirect('/book')->with('success', 'berhasil membuat !');
+    }
+
+    public function newBook(){
+        $category = Category::all(); 
+        return view ('dashboard.book.form', compact('category'));
+    }
+    
+    public function category(){
+        $category = Category::all();
+        return view('dashboard.category.index', compact('category'));
+    }
+
+    public function addCategory(Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required',
+        ]);
+        Category::create([
+            'category_name'=> $request->category_name,
+            // Knepa diem mlu
+        ]);
         // dd($request->all()); 
-        return redirect('/create')->with('success', 'berhasil membuat !');
+        return redirect('/book')->with('success', 'berhasil membuat !');
+    }
+
+    public function newCategory(){
+        return view ('dashboard.category.form');
     }
 
     public function store(Request $request)

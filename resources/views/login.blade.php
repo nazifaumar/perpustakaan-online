@@ -28,7 +28,7 @@
     <script src="https://data.perpusnas.go.id/assets/theme/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="https://data.perpusnas.go.id/assets/theme/plugins/jquery-validation/additional-methods.min.js"></script>
 </head>
-
+{{-- hiii oi --}}
 <style>
     *{
         background-color: #2a5298;

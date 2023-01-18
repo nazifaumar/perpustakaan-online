@@ -1,7 +1,6 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <!-- CONTENT -->
     <section id="content">
         <!-- NAVBAR -->
         <nav>
@@ -20,7 +19,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Users</a>
+                            <a class="active" href="#">Book</a>
                         </li>
                     </ul>
                 </div>
@@ -29,28 +28,33 @@
                     <div class="order">
                         <div class="head">
                             <h3>Users Data</h3>
-                            <i class='bx bx-search'></i>
-                            <i class='bx bx-filter'></i>
+							<a href="/new-book"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M14 16h2v-2h2v-2h-2v-2h-2v2h-2v2h2ZM2 20V4h8l2 2h10v14Zm2-2h16V8h-8.825l-2-2H4Zm0 0V6v2Z"/></svg></a>
                         </div>
 
                         <table>
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Number Phone</th>
+                                    <th>judul</th>
+                                    <th>penulis</th>
+                                    <th>penerbit</th>
+                                    <th>isbn</th>
+                                    <th>Sinopsis</th>
+                                    <th>Kategori Buku</th>
+                                    <th>Sampul buku</th>
                                 </tr>
                             </thead>
-                            @foreach ($user as $item)
+                            @foreach ($data as $item)
                                 <tbody>
                                     <tr>
                                         <th>{{ $item->id }}</th>
-                                        <td class="data-title">{{ $item->name }} </td>
-                                        <td class="data-title">{{ $item->email }}</td>
-                                        <td class="data-title">{{ $item->address }} </td>
-                                        <td class="data-title">{{ $item->tlp }} </td>
+                                        <td class="data-title">{{ $item->judul }} </td>
+                                        <td class="data-title">{{ $item->penulis }}</td>
+                                        <td class="data-title">{{ $item->penerbit }} </td>
+                                        <td class="data-title">{{ $item->isbn }} </td>
+                                        <td class="data-title">{{ $item->sinopsis }} </td>
+                                        <td class="data-title">{{ $item->kategori }} </td>
+                                        <td class="data-title"><img src="images/{{ $item->image }}"></td>
                                         <td>{{ $item->created_at }}</td>
                                         <td><span class="status completed">Delete</span></td>
                                     </tr>
@@ -63,5 +67,4 @@
         </main>
         <!-- MAIN -->
     </section>
-    <!-- CONTENT -->
 @endsection

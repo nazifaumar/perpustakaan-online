@@ -1,7 +1,6 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <!-- CONTENT -->
     <section id="content">
         <!-- NAVBAR -->
         <nav>
@@ -20,7 +19,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Users</a>
+                            <a class="active" href="#">Category Book</a>
                         </li>
                     </ul>
                 </div>
@@ -28,33 +27,27 @@
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                            <h3>Users Data</h3>
-                            <i class='bx bx-search'></i>
-                            <i class='bx bx-filter'></i>
+                            <h3>--</h3>
+                            <a href="/new-category"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M14 16h2v-2h2v-2h-2v-2h-2v2h-2v2h2ZM2 20V4h8l2 2h10v14Zm2-2h16V8h-8.825l-2-2H4Zm0 0V6v2Z"/></svg></a>
                         </div>
 
                         <table>
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Number Phone</th>
+                                    <th>Category Name</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            @foreach ($user as $item)
+                            @foreach ($category as $item)
                                 <tbody>
                                     <tr>
                                         <th>{{ $item->id }}</th>
-                                        <td class="data-title">{{ $item->name }} </td>
-                                        <td class="data-title">{{ $item->email }}</td>
-                                        <td class="data-title">{{ $item->address }} </td>
-                                        <td class="data-title">{{ $item->tlp }} </td>
-                                        <td>{{ $item->created_at }}</td>
+                                        <td class="data-title">{{ $item->category_name }} </td>
+                                        <td>{{$item->created_at}}</td>
                                         <td><span class="status completed">Delete</span></td>
-                                    </tr>
-                                </tbody>
+									</tr>
+								</tbody>
                             @endforeach
                         </table>
                     </div>
@@ -63,5 +56,4 @@
         </main>
         <!-- MAIN -->
     </section>
-    <!-- CONTENT -->
 @endsection

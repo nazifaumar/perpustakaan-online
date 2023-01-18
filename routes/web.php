@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PerpusController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 use App\Models\Data;
 use App\Models\Perpus;
 use App\Models\User;
@@ -24,9 +25,16 @@ Route::post('/register', [PerpusController::class, 'inputRegister'])-> name('reg
 Route::get('/log', [PerpusController::class, 'login'])->name('login');
 Route::post('/log', [PerpusController::class, 'auth'])->name('login.auth');
 
+Route::get('/logout', [PerpusController::class, 'logout']);
+
 Route::get('/create', [PerpusController::class, 'create'])->name('create');
-Route::get('/dash', [PerpusController::class, 'dashboard'])->name('dashboard.dashboard');
+Route::get('/dashboard', [PerpusController::class, 'dashboard'])->name('dashboard.dashboard');
 Route::get('/user', [PerpusController::class, 'user'])->name('user');
 
-Route::get('/book', [PerpusController::class, 'book']);
+Route::get('/new-book', [PerpusController::class, 'newBook']);
+Route::get('/book', [PerpusController::class, 'book'])->name('book');
 Route::post('/book', [PerpusController::class, 'add'])->name('add');
+
+Route::get('/new-category', [PerpusController::class, 'newCategory']);
+Route::get('/category', [PerpusController::class, 'category'])->name('category');
+Route::post('/category', [PerpusController::class, 'addCategory'])->name('addCategory');
