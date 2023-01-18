@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use App\Models\Perpus;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class PerpusController extends Controller
             'email' => 'required',
             'tlp' => 'required',
             'address' => 'required',
-            'password' => 'required|min:4|max:7',
+            'password' => 'required|min:4',
         ]);
 
         User::create ([
@@ -70,10 +71,6 @@ class PerpusController extends Controller
         return view('dashboard.dashboard');
     }
 
-    public function book(){
-        return view('dashboard.book');
-    }
-    
     
     public function user(){
         $user = User::all();
@@ -83,14 +80,21 @@ class PerpusController extends Controller
 
     public function auth(Request $request)
     {
+        // $request->validate([
+        //     'name' => 'required|exists:users,name',
+        //     'password' => 'required',
+        // ],[
+        //     'name.exists' => "This name doesn't exists"
+        // ]);
+
         $request->validate([
-            'name' => 'required|exists:users,name',
-            'password' => 'required',
+            'email' => 'required|exists:users,email',
+            'password' => "required",
         ],[
-            'name.exists' => "This name doesn't exists"
+            'email.exists' => "This email doesn't exists"
         ]);
 
-        $user = $request->only('name', 'password');
+        $user = $request->only('email', 'password');
         if (Auth::attempt($user)) {
             return redirect('/create');
         } else {
@@ -103,6 +107,40 @@ class PerpusController extends Controller
     public function create()
     {
             return view('create');
+    }
+
+    public function book(){
+        return view('dashboard.book');
+    }
+    
+
+    public function add(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'isbn' => 'required',
+            'sinopsis' => 'required',
+            'kategori' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        $image = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $image);
+
+        Data::create([
+            // 'book_id'=> $ambil,
+            'judul'=> $request->judul,
+            'penulis'=> $request->penulis,
+            'penerbit'=> $request->penerbit,
+            'isbn'=> $request->isbn,
+            'sinopsis'=> $request->sinopsis,
+            'kategori'=> $request->kategori,
+            'image'=> $image,
+        ]);
+        // dd($request->all()); 
+        return redirect('/create')->with('success', 'berhasil membuat !');
     }
 
     public function store(Request $request)
@@ -125,7 +163,7 @@ class PerpusController extends Controller
         
     }
 
-    public function destroy(Perpus $perpus)
+    public function destroy( $perpus)
     {
         
     }

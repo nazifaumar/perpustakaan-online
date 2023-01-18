@@ -45,7 +45,8 @@
 <section>
     <div class="h-full d-flex justify-content-center">
     <form id="form_login" class="rounded-xl bg-white border-gray min-w-sm p-4 my-auto" action="" method="POST">
-        <input type="hidden" name="csrf_test_name" value="d1ce9cf6b9987582e60bb6d90477551d" />        
+        @csrf
+        {{-- <input type="hidden" name="csrf_test_name" value="d1ce9cf6b9987582e60bb6d90477551d" />         --}}
         <div class="mb-4 bg-white text-center">
             <div class="mt-2 form-logo-label bg-white"><strong class="bg-white">Application Login</strong></div>
         </div>
@@ -53,7 +54,10 @@
         <div class="mt-2 bg-white">
             <label class="m-0 form-label bg-white">Email</label>
             <div class="input-group bg-white">
-                <input type="text" name="email" class="form-control bg-white" value="" required>
+                <input type="text" name="email" class="form-control bg-white" value="" >
+                @error('email')
+                <div class="error">{{$message}}</div>
+                @enderror
             </div>
         </div>
 
@@ -65,6 +69,10 @@
                     <span class="input-group-text pointer-click bg-white" id="password_icon" onclick="tooglePassword('input_password', 'password_icon')">
                         <i class="fa fa-eye-slash bg-white" aria-hidden="true"></i>
                     </span>
+                    @error('password')
+                    <div class="error">{{$password}}</div>
+                    @enderror
+                </div>
                 </div>
             </div>
         </div>
@@ -73,6 +81,8 @@
             <a href="/" class="btn">Back</a>
             <button type="submit" class="btn ">Login</button>
         </div>
+        
+        
 
         <div class="text-center ">
             <div class="bg-white">

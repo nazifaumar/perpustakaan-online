@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="{{asset('assets/css/dash.css')}}">
 
-	<title>AdminHub</title>
+	<title>Admin</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
+			<span class="text">Dashboard</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -88,6 +88,7 @@
 						<i class='bx bx-search' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
+					
 					<table>
 						<thead>
 							<tr>

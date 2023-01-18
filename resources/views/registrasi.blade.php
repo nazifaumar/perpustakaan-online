@@ -43,9 +43,9 @@
 <body class="container-fluid h-full m-0 p-0">
 <section>
     <div class="h-full d-flex justify-content-center">
-      @csrf
     <form id="form_login" class="rounded-xl bg-white border-gray min-w-sm p-4 my-auto" action="{{route('register.post')}}" method="POST">
-        <input type="hidden" name="csrf_test_name" value="d1ce9cf6b9987582e60bb6d90477551d" />        
+        {{-- <input type="hidden" name="csrf_test_name" value="d1ce9cf6b9987582e60bb6d90477551d" />         --}}
+        @csrf
         <div class="mb-4 bg-white text-center">
             <div class="mt-2 form-logo-label bg-white"> <strong class="bg-white">REGISTRASI</strong></div>
         </div>
@@ -54,6 +54,9 @@
             <label class="m-0 form-label bg-white">Full Name</label>
             <div class="input-group bg-white">
                 <input type="text" name="name" id="name" class="form-control bg-white" value="" required>
+                @error('name')
+                <div class="error">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 
@@ -61,6 +64,9 @@
           <label class="m-0 form-label bg-white">Email</label>
           <div class="input-group bg-white">
               <input type="email" name="email" id="email" class="form-control bg-white" value="" required>
+              @error('email')
+              <div class="error">{{ $message }}</div>
+              @enderror
           </div>
       </div>
 
@@ -68,6 +74,9 @@
         <label class="m-0 form-label bg-white">Number Phone</label>
         <div class="input-group bg-white">
             <input type="number" name="tlp" id="tlp" class="form-control bg-white" value="" required>
+            @error('tlp')
+            <div class="error">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 
@@ -75,6 +84,9 @@
           <label class="m-0 form-label bg-white">Address</label>
           <div class="input-group bg-white">
               <input type="text" name="address" id="address" class="form-control bg-white" value="" required>
+              @error('address')
+              <div class="error">{{ $message }}</div>
+              @enderror
           </div>
       </div>
 
