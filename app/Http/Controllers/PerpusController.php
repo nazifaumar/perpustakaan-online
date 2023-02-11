@@ -85,7 +85,7 @@ class PerpusController extends Controller
         $data = Data::all();
         return view('dashboard.book.index', compact('data'));
     }
-    
+      
 
     public function add(Request $request)
     {
@@ -111,7 +111,7 @@ class PerpusController extends Controller
             'kategori'=> $request->kategori,
             'image'=> $image,
         ]);
-        return redirect('/book')->with('success', 'berhasil membuat !');
+        return redirect('dashboard/book')->with('success', 'berhasil membuat !');
     }
 
     public function newBook(){
@@ -131,14 +131,16 @@ class PerpusController extends Controller
         ]);
         Category::create([
             'category_name'=> $request->category_name,
-            // Knepa diem mlu
         ]);
-        // dd($request->all()); 
-        return redirect('/book')->with('success', 'berhasil membuat !');
+        return redirect('dashboard/category')->with('success', 'berhasil membuat !');
     }
 
     public function newCategory(){
         return view ('dashboard.category.form');
+    }
+
+    public function bookDelete(){
+        
     }
 
     public function store(Request $request)

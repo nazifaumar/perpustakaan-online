@@ -27,8 +27,8 @@
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                            <h3>--</h3>
-                            <a href="/new-category"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M14 16h2v-2h2v-2h-2v-2h-2v2h-2v2h2ZM2 20V4h8l2 2h10v14Zm2-2h16V8h-8.825l-2-2H4Zm0 0V6v2Z"/></svg></a>
+                            <h3>Category name</h3>
+                            <a href="/dashboard/new-category"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M14 16h2v-2h2v-2h-2v-2h-2v2h-2v2h2ZM2 20V4h8l2 2h10v14Zm2-2h16V8h-8.825l-2-2H4Zm0 0V6v2Z"/></svg></a>
                         </div>
 
                         <table>

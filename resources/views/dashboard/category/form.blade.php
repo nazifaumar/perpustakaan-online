@@ -7,6 +7,7 @@
     <title>Create </title>
     <!-- Icon APP -->
     <link href="assets/img/book-bg.png" rel="icon">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <!-- Select 2 -->
     <link rel="stylesheet" href="https://data.perpusnas.go.id/assets/theme/plugins/select2/css/select2.min.css">
     <link rel="stylesheet"
@@ -29,22 +30,45 @@
     <script src="https://data.perpusnas.go.id/assets/theme/plugins/jquery-validation/additional-methods.min.js"></script>
 </head>
 
-<body class="container-fluid h-full m-0 p-0">
+<body>
+
+    
+<div class="container content">  
+    <form id="create-form" action="{{ route('addCategory')}}" method="POST">
+      @csrf
+      <h3>Create Todo</h3>
+      <hr>
+      
+      <fieldset>
+          <label for="">Title</label>
+          <br>
+          <input class="input" placeholder="title of todo" type="text" name="category_name">
+          @error('category_name')
+          <div class="error">{{ $message }}</div>
+         @enderror
+      </fieldset>
+      <br>
+      <fieldset>
+          <button class="input" type="submit" id="contactus-submit">Submit</button>
+      </fieldset>
+    
+    </form>
+  </div>
 
     <!-- Content -->
-    <div class="h-full d-flex justify-content-center">
+    {{--  <div class="h-full d-flex justify-content-center">
         <div class="main-body" style="width: 50%; padding: 1rem;">
         </div>
         <div class="container">
             <h1>Create Category Name</h1>
             <br>
             <form action="{{ route('addCategory') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                {{-- pakein errornya --}}
+                @csrf --}}
+                {{-- pakein errornya
                 <div class="row">
                     <div class="column">
                         <label for="judul">Category Name</label>
-                        <input type="text" name="category_name" placeholder="Masukkan Nama Bank">
+                        <input type="text" name="category_name" placeholder="enter a category name">
                         @error('category_name')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -53,7 +77,7 @@
                 <button type="submit" style="cursor: pointer;">Submit</button>
             </form>
         </div>
-    </div>
+    </div> --}}
     <script src="https://data.perpusnas.go.id/assets/theme/plugins/select2/js/select2.full.min.js"></script>
 
 </body>

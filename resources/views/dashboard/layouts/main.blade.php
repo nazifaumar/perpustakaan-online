@@ -30,20 +30,20 @@
                 </a>
             </li>
             <li @if (Route::is('user')) class="active" @endif>
-                <a href="/user">
+                <a href="/dashboard/user">
                     <i class='bx bxs-group'></i>
                     <span class="text">Users</span>
                 </a>
             </li>
             <li @if (Route::is('book')) class="active" @endif>
-                <a href="/book">
+                <a href="/dashboard/book">
                     <i class='bx bxs-book-alt'></i>
                     <span class="text">Book</span>
                 </a>
             </li>
 
             <li @if (Route::is('category')) class="active" @endif>
-                <a href="/category">
+                <a href="/dashboard/category">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Category Book</span>
                 </a>
